@@ -1,0 +1,53 @@
+{
+  "name": "generator",
+  "version": "0.0.1",
+  "description": "",
+  "exports": {
+    "./core/*.js": {
+      "import": "./dist/lib/core/*.js",
+      "types": "./dist/lib/core/*.d.ts"
+    },
+    "./config-adapter/*.js": {
+      "import": "./dist/lib/adapters/*/config.js",
+      "types": "./dist/lib/adapters/*/config.d.ts"
+    },
+    "./themes/*.js": {
+      "import": "./dist/themes/*/index.js",
+      "types": "./dist/themes/*/index.d.ts"
+    }
+  },
+  "imports": {
+    "#core/*": "./dist/lib/core/*.js",
+    "#config-adapter/*": "./dist/lib/adapters/*/config.js",
+    "#themes/*": "./dist/themes/*/index.js"
+  },
+  "bin": {
+    "generate": "./dist/bin/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "pnpm tsc",
+    "generate": "node dist/bin/cli.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.8.1",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@12.8.1",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "typescript": "^7.0.2"
+  }
+}
