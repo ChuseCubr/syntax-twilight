@@ -1,15 +1,15 @@
 #!/usr/bin/env node
+import * as $twilight from "#themes/alabaster-twilight";
+import * as $markup from "./markup.js";
 
-const extractThemeArg = (args: Array<string>): string => {
-  const theme = args[2];
-  if (theme === undefined) throw new Error("no theme provided");
-  return theme;
-};
+const blocks = [
+  $markup.Header(1, "Alabaster Twilight"),
+  $markup.Header(2, "Zed"),
+  $markup.Header(3, "Dusk"),
+  $markup.verbatimFromConfig($twilight.theme.dusk.zed),
+  $markup.Header(3, "Dawn"),
+  $markup.verbatimFromConfig($twilight.theme.dawn.zed),
+];
 
-const getTheme = async (theme: string): Promise<any> => {
-  return (await import(`#themes/${theme}`)).theme;
-};
-
-const prettyPrint = (x: any) => console.log(JSON.stringify(x, null, 2));
-
-prettyPrint(await getTheme(extractThemeArg(process.argv)));
+const content = $markup.renderAll(blocks);
+console.log(content);

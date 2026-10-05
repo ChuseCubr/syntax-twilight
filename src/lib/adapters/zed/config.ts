@@ -1,16 +1,18 @@
-import * as $rule from "#core/rule";
+import * as $config from "#core/config";
 import * as $group from "#core/group";
+import * as $rule from "#core/rule";
 import * as $capture from "./capture.js";
 import * as $zedRule from "./rule.js";
 import * as $zedStyle from "./style.js";
 
-export type Config = Partial<Record<$capture.Capture, $zedStyle.ZedStyle>>;
-const create = (config: Config): Config => config;
+export type ZedConfig = Partial<Record<$capture.Capture, $zedStyle.ZedStyle>>;
+const create = (config: ZedConfig): ZedConfig => config;
 
-export const fromRules = (rules: Array<$rule.Rule<$capture.Capture>>): Config =>
-  fromZedRules($zedRule.fromRules(rules));
+export const fromRules = (
+  rules: Array<$rule.Rule<$capture.Capture>>,
+): ZedConfig => fromZedRules($zedRule.fromRules(rules));
 
-const fromZedRules = (rules: Array<$zedRule.ZedRule>): Config =>
+const fromZedRules = (rules: Array<$zedRule.ZedRule>): ZedConfig =>
   rules.reduce((acc, rule) => {
     acc[rule.capture] = rule.style;
     return acc;
@@ -23,3 +25,5 @@ export const DEFAULT_CONFIG = fromZedRules(
 );
 
 export const createGroup = $group.createFactory($capture.CAPTURES);
+export const toConfig = (config: ZedConfig): $config.Config =>
+  $config.create({ language: "json", config: JSON.stringify(config, null, 2) });
