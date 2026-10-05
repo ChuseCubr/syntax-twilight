@@ -7,6 +7,7 @@ const dimmed = $zedConfig.createGroup([
   "hint",
   "keyword",
   "operator",
+  "link_uri",
   "predictive",
   "preproc",
   "punctuation",
@@ -22,12 +23,18 @@ const literal = $zedConfig.createGroup([
   "constant",
   "constant.builtin",
   "number",
+
+  // I like to differentiate these concepts from plain strings
   "string.escape",
   "string.regex",
   "string.special",
   "string.special.symbol",
 ]);
-const function_ = $zedConfig.createGroup(["function"]);
+const function_ = $zedConfig.createGroup([
+  "function",
+  "tag", // JSX/TSX tags can be seen as declarative UI-building functions
+]);
+const link = $zedConfig.createGroup(["link_text"]);
 
 const bold = $zedConfig.createGroup(["emphasis.strong", "title"]);
 const italic = $zedConfig.createGroup(["emphasis"]);
@@ -43,6 +50,7 @@ export const config = $zedConfig.toConfig({
       $group.applyStyle(bright, $palette.foreground.bright),
       $group.applyStyle(dimmed, $palette.foreground.dimmed),
       $group.applyStyle(function_, $palette.foreground.function_),
+      $group.applyStyle(link, $palette.foreground.link),
       $group.applyStyle(literal, $palette.foreground.literal),
       $group.applyStyle(string, $palette.foreground.string),
 

@@ -6,4 +6,5 @@ export const foreground = {
   string: $style.Foreground($style.ColorCode("#85cd79")),
   literal: $style.Foreground($style.ColorCode("#d787cd")),
   function_: $style.Foreground($style.ColorCode("#5dafec")),
+  link: $style.Foreground($style.ColorCode("#5dafec")),
 } as const;
