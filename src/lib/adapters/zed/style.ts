@@ -1,9 +1,10 @@
+import * as $color from "#core/color";
 import * as $style from "#core/style";
 
 const create = (style: ZedStyle): ZedStyle => style;
 export type ZedStyle = Partial<{
-  color: ZedColorCode;
-  background_color: ZedColorCode;
+  color: ZedColor;
+  background_color: ZedColor;
   font_style: "italic";
   font_weight: typeof FONT_WEIGHT.bold;
 }>;
@@ -23,8 +24,8 @@ export const mergeStyles = (styles: Array<$style.Style>): ZedStyle =>
     create({}),
   );
 
-export type ZedColorCode = string & { __brand: "ZedColorCode" };
-const ZedColorCode = (colorCode: $style.ColorCode): ZedColorCode =>
+type ZedColor = string & { __brand: "ZedColor" };
+const ZedColorCode = (colorCode: $color.Color): ZedColor =>
   `${colorCode}ff` as any;
 
 const FONT_WEIGHT = {

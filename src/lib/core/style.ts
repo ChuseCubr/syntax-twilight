@@ -1,10 +1,12 @@
+import * as $color from "./color.js";
+
 export type Style = Foreground | Background | Italic | Bold;
 
-export const Foreground = (color: ColorCode): Style => ({
+export const Foreground = (color: $color.Color): Style => ({
   tag: "foreground",
   value: color,
 });
-export const Background = (color: ColorCode): Style => ({
+export const Background = (color: $color.Color): Style => ({
   tag: "background",
   value: color,
 });
@@ -18,8 +20,8 @@ export const Italic = (): Style => ({
 export const match = <T>(
   style: Style,
   arms: {
-    onForeground: (color: ColorCode) => T;
-    onBackground: (color: ColorCode) => T;
+    onForeground: (color: $color.Color) => T;
+    onBackground: (color: $color.Color) => T;
     onItalic: () => T;
     onBold: () => T;
   },
@@ -36,16 +38,7 @@ export const match = <T>(
   }
 };
 
-type Foreground = { tag: "foreground"; value: ColorCode };
-type Background = { tag: "background"; value: ColorCode };
+type Foreground = { tag: "foreground"; value: $color.Color };
+type Background = { tag: "background"; value: $color.Color };
 type Bold = { tag: "bold" };
 type Italic = { tag: "italic" };
-
-const colorCodeFormat = /^#[a-fA-F0-9]{6}$/;
-export type ColorCode = string & { __brand: "ColorCode" };
-export const ColorCode = (colorCode: string): ColorCode => {
-  if (!colorCodeFormat.test(colorCode)) {
-    throw new Error(`invalid color code: ${colorCode}`);
-  }
-  return colorCode as any;
-};

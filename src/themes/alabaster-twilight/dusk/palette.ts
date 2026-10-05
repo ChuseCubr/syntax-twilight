@@ -1,10 +1,13 @@
-import * as $style from "#core/style";
+import * as $palette from "#core/palette";
+import * as $color from "#core/color";
 
-export const foreground = {
-  dimmed: $style.Foreground($style.ColorCode("#506070")),
-  bright: $style.Foreground($style.ColorCode("#ffee6c")),
-  string: $style.Foreground($style.ColorCode("#85cd79")),
-  literal: $style.Foreground($style.ColorCode("#d787cd")),
-  function_: $style.Foreground($style.ColorCode("#5dafec")),
-  link: $style.Foreground($style.ColorCode("#5dafec")),
-} as const;
+export const palette = $palette.create({
+  foreground: {
+    dimmed: $color.create("#506070"),
+    bright: $color.create("#ffee6c"),
+    string: $color.create("#85cd79"),
+    literal: $color.create("#d787cd"),
+    function: $color.create("#5dafec"),
+    link: $color.create("#5dafec"),
+  },
+});
