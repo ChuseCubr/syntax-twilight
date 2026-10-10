@@ -1,11 +1,12 @@
-import * as $zedConfig from "#config-adapter/zed";
-import * as $theme from "#core/theme";
-import * as $palette from "../palette.js";
+import * as core from "#core";
+import * as adapter from "#adapters/zed";
+import * as palette from "../palette.js";
 
-const theme = $theme.define($zedConfig.captures, {
-  colors: $palette.palette,
-  mapping: {
-    colors: {
+export const snippet = adapter.toSnippet(
+  core.Theme(adapter.captures, {
+    palette: palette.palette,
+    mapping: {
+      default: [...adapter.captures],
       dimmed: [
         "hint",
         "keyword",
@@ -38,13 +39,8 @@ const theme = $theme.define($zedConfig.captures, {
         "tag", // JSX/TSX tags can be seen as declarative UI-building functions
       ],
       link: ["link_text"],
+      bold: ["emphasis.strong", "title"],
+      italic: ["emphasis"],
     },
-    bold: ["emphasis.strong", "title"],
-    italic: ["emphasis"],
-  },
-});
-
-export const config = $zedConfig.toConfig({
-  ...$zedConfig.deriveDefault($zedConfig.captures),
-  ...$zedConfig.fromRules($theme.toRules(theme)),
-});
+  }),
+);

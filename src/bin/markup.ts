@@ -1,4 +1,4 @@
-import * as $config from "#core/config";
+import * as core from "#core";
 
 type Markup = Header | Verbatim;
 
@@ -12,10 +12,10 @@ const renderHeader = (header: Header): string =>
   `${"#".repeat(header.level)} ${header.text}\n`;
 
 type Verbatim = { tag: "verbatim"; language: string; text: string };
-export const verbatimFromConfig = (config: $config.Config): Verbatim => ({
+export const verbatimFromSnippet = (snippet: core.Snippet): Verbatim => ({
   tag: "verbatim",
-  language: config.language,
-  text: config.config,
+  language: snippet.language,
+  text: snippet.text,
 });
 const renderVerbatim = (block: Verbatim): string =>
   "```" + `${block.language}\n${block.text}` + "\n```\n";

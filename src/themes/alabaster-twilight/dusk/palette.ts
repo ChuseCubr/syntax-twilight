@@ -1,13 +1,13 @@
-import * as $palette from "#core/palette";
-import * as $color from "#core/color";
+import * as core from "#core";
 
-export const palette = $palette.create({
-  foreground: {
-    dimmed: $color.create("#506070"),
-    bright: $color.create("#ffee6c"),
-    string: $color.create("#85cd79"),
-    literal: $color.create("#d787cd"),
-    function: $color.create("#5dafec"),
-    link: $color.create("#5dafec"),
-  },
+export const palette = core.Palette({
+  default: {},
+  dimmed: { foreground: core.Color("#506070") },
+  bright: { foreground: core.Color("#ffee6c") },
+  string: { foreground: core.Color("#85cd79") },
+  literal: { foreground: core.Color("#d787cd") },
+  function: { foreground: core.Color("#5dafec") },
+  link: { foreground: core.Color("#5dafec") },
+  bold: { bold: true },
+  italic: { italic: true },
 });

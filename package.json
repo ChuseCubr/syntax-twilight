@@ -1,15 +1,15 @@
 {
-  "name": "generator",
+  "name": "syntax-twilight",
   "version": "0.0.1",
   "description": "",
   "exports": {
-    "./core/*.js": {
-      "import": "./dist/lib/core/*.js",
-      "types": "./dist/lib/core/*.d.ts"
+    "./core.js": {
+      "import": "./dist/lib/core.js",
+      "types": "./dist/lib/core.d.ts"
     },
-    "./config-adapter/*.js": {
-      "import": "./dist/lib/adapters/*/config.js",
-      "types": "./dist/lib/adapters/*/config.d.ts"
+    "./adapters/*.js": {
+      "import": "./dist/lib/adapters/*.js",
+      "types": "./dist/lib/adapters/*.d.ts"
     },
     "./themes/*.js": {
       "import": "./dist/themes/*/index.js",
@@ -17,8 +17,8 @@
     }
   },
   "imports": {
-    "#core/*": "./dist/lib/core/*.js",
-    "#config-adapter/*": "./dist/lib/adapters/*/config.js",
+    "#core": "./dist/lib/core.js",
+    "#adapters/*": "./dist/lib/adapters/*.js",
     "#themes/*": "./dist/themes/*/index.js"
   },
   "bin": {
@@ -35,7 +35,7 @@
     "generate": "node dist/bin/cli.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "ChuseCubr <chasevillarroel@gmail.com>",
   "license": "ISC",
   "devEngines": {
     "packageManager": {
